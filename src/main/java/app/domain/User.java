@@ -8,13 +8,13 @@ public class User {
     private DocumentTypeEnum documentType;
     private String email;
     private String password;
-    private boolean state;
+    private String state;
 
     public User() {
     }
 
 
-    public User(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, boolean isActive) {
+    public User(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, String isActive) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -72,11 +72,11 @@ public class User {
         this.password = password;
     }
 
-    public boolean isState() {
+    public String isState() {
         return state;
     }
 
-    public void setState(boolean state) {
+    public void setState(String state) {
         this.state = state;
     }
 

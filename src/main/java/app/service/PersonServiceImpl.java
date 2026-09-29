@@ -2,16 +2,17 @@ package app.service;
 
 import app.domain.DocumentTypeEnum;
 import app.domain.Person;
-import app.service.inputports.UserUseCase;
+import app.service.inputports.PersonUseCase;
 
 import java.util.List;
 
-public class PersonServiceImpl implements UserUseCase {
+public class PersonServiceImpl implements PersonUseCase {
 
     @Override
-    public Person createPerson(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, boolean isActive, String occupation, Double salary) {
+    public Person createPerson(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, String isActive, String occupation, Double salary) {
         // Logic to create a new Person object
-        return null; // Placeholder return
+        Person person = new Person(id, name, lastName, documentType, email , password , isActive, occupation , salary );
+        return person; // Placeholder return
     }
 
 
@@ -25,7 +26,7 @@ public class PersonServiceImpl implements UserUseCase {
         return null; // Placeholder return
     }
 
-    public Person updatePerson(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, boolean isActive, String occupation, Double salary) {
+    public Person updatePerson(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, String isActive, String occupation, Double salary) {
         // Logic to update an existing Person object
         return null; // Placeholder return
     }

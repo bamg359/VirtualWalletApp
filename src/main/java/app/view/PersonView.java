@@ -1,14 +1,16 @@
 package app.view;
 
+import app.domain.DocumentTypeEnum;
 import app.service.helpers.SetDocumentType;
-import app.service.inputports.UserUseCase;
+import app.service.helpers.SetPersonState;
+import app.service.inputports.PersonUseCase;
 import app.utils.FormRuleValidator;
 
 public class PersonView {
 
-    private final UserUseCase personService;
+    private final PersonUseCase personService;
 
-    PersonView(UserUseCase personService){
+    PersonView(PersonUseCase personService){
         this.personService = personService;
     }
 
@@ -18,9 +20,17 @@ public class PersonView {
         String name = FormRuleValidator.validateString("Ingrese el nombre de la persona: ");
         String lastName = FormRuleValidator.validateString("Ingrese el apellido de la persona: ");
         String docType = SetDocumentType.getDocType();
+        String email = FormRuleValidator.validateString("Ingrese el email");
+        String password = FormRuleValidator.validateString("Ingrese una contraseña de al menos 8 caracteres que contenga Mayusculas, numeros y simbolos ");
+        String state = SetPersonState.getPersonState();
+        String occupation = FormRuleValidator.validateString("Ingrese la ocupación");
+        double salary = FormRuleValidator.validateDouble("Ingrese su salario");
 
 
-        personService.createPerson(id, docType, name, lastName);
+
+
+
+        personService.createPerson(id, name, lastName, DocumentTypeEnum.valueOf(docType), email , password , state , occupation , salary);
 
 
 

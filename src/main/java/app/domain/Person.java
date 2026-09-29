@@ -11,7 +11,7 @@ public class Person extends User {
         super();
     }
 
-    public Person(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, boolean isActive, String occupation, Double salary) {
+    public Person(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, String isActive, String occupation, Double salary) {
         super(id, name, lastName, documentType, email, password, isActive);
         this.occupation = occupation;
         this.salary = salary;
