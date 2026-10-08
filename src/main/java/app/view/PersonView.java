@@ -1,6 +1,6 @@
 package app.view;
 
-import app.domain.DocumentTypeEnum;
+import app.domain.enums.DocumentTypeEnum;
 import app.service.helpers.SetDocumentType;
 import app.service.helpers.SetPersonState;
 import app.service.inputports.PersonUseCase;
@@ -10,7 +10,7 @@ public class PersonView {
 
     private final PersonUseCase personService;
 
-    PersonView(PersonUseCase personService){
+    public PersonView(PersonUseCase personService){
         this.personService = personService;
     }
 
@@ -30,7 +30,7 @@ public class PersonView {
 
 
 
-        personService.createPerson(id, name, lastName, DocumentTypeEnum.valueOf(docType), email , password , state , occupation , salary);
+        personService.createPerson(id, name, lastName, docType, email , password , state , occupation , salary);
 
 
 
@@ -38,8 +38,8 @@ public class PersonView {
 
     }
 
-    public void showPerson(){
-        System.out.println("Showing person");
+    public void showPersons(){
+        System.out.println("Showing persons");
     }
 
 
