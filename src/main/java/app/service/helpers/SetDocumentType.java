@@ -1,6 +1,6 @@
 package app.service.helpers;
 
-import app.domain.DocumentTypeEnum;
+import app.domain.enums.DocumentTypeEnum;
 import app.utils.FormRuleValidator;
 
 public class SetDocumentType {

@@ -1,5 +1,7 @@
 package app.domain;
 
+import app.domain.enums.DocumentTypeEnum;
+
 public class Person extends User {
 
 
@@ -11,7 +13,7 @@ public class Person extends User {
         super();
     }
 
-    public Person(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, String isActive, String occupation, Double salary) {
+    public Person(Integer id, String name, String lastName, String documentType, String email, String password, String isActive, String occupation, Double salary) {
         super(id, name, lastName, documentType, email, password, isActive);
         this.occupation = occupation;
         this.salary = salary;
