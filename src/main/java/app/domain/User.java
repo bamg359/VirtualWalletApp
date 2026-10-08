@@ -1,11 +1,13 @@
 package app.domain;
 
+import app.domain.enums.DocumentTypeEnum;
+
 public class User {
 
     private Integer id;
     private String name;
     private String lastName;
-    private DocumentTypeEnum documentType;
+    private String documentType;
     private String email;
     private String password;
     private String state;
@@ -14,7 +16,7 @@ public class User {
     }
 
 
-    public User(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, String isActive) {
+    public User(Integer id, String name, String lastName, String documentType, String email, String password, String isActive) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -48,11 +50,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public DocumentTypeEnum getDocumentType() {
+    public String getDocumentType() {
         return documentType;
     }
 
-    public void setDocumentType(DocumentTypeEnum documentType) {
+    public void setDocumentType(String documentType) {
         this.documentType = documentType;
     }
 
