@@ -9,7 +9,7 @@ public class Company extends User{
     public Company() {
     }
 
-    public Company(Integer id, String name, String lastName, DocumentTypeEnum documentType, String email, String password, String isActive, Long nit, String companyType) {
+    public Company(Integer id, String name, String lastName, String documentType, String email, String password, String isActive, Long nit, String companyType) {
         super(id, name, lastName, documentType, email, password, isActive);
         this.nit = nit;
         this.companyType = companyType;

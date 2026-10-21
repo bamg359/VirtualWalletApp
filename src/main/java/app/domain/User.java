@@ -16,7 +16,7 @@ public class User {
     }
 
 
-    public User(Integer id, String name, String lastName, String documentType, String email, String password, String isActive) {
+    public User(Integer id, String name, String lastName, String documentType, String email, String password, String state) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;

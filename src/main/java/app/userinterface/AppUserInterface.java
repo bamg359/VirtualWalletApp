@@ -1,7 +1,9 @@
 package app.userinterface;
 
-import app.repository.AccountRepositoryImpl;
-import app.repository.PersonRepositoryImp;
+import app.persistence.db.DataBaseConnection;
+import app.persistence.repository.AccountRepositoryImpl;
+import app.persistence.repository.PersonRepositoryImp;
+import app.persistence.repository.PersonRepositoryImplBD;
 import app.service.AccountServiceImpl;
 import app.service.PersonServiceImpl;
 import app.service.inputports.AccountUseCase;
@@ -12,9 +14,13 @@ import app.utils.FormRuleValidator;
 import app.view.AccountView;
 import app.view.PersonView;
 
+import java.sql.Connection;
+
 public class AppUserInterface {
 
-    PersonRepositoryInterface personRepositoryInterface = new PersonRepositoryImp();
+    Connection connection = DataBaseConnection.getInstance().getConnection();
+
+    PersonRepositoryInterface personRepositoryInterface = new PersonRepositoryImplBD(connection);
     PersonUseCase personUseCase = new PersonServiceImpl(personRepositoryInterface);
     PersonView personView = new PersonView(personUseCase);
     AccountRepositoryInterface accountRepositoryInterface = new AccountRepositoryImpl();
@@ -25,7 +31,7 @@ public class AppUserInterface {
     public void startApp(){
         int init= FormRuleValidator.validateInt("Presione 1 para iniciar la aplicacion");
         do {
-
+            DataBaseConnection.getInstance();
             int option = FormRuleValidator.validateInt("""
                 1. Registro.
                 2. Login.
