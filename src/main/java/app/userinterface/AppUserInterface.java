@@ -1,6 +1,9 @@
 package app.userinterface;
 
+import app.domain.Person;
 import app.persistence.db.DataBaseConnection;
+import app.persistence.mapper.PersonMapper;
+import app.persistence.mapper.RowMapper;
 import app.persistence.repository.AccountRepositoryImpl;
 import app.persistence.repository.PersonRepositoryImp;
 import app.persistence.repository.PersonRepositoryImplBD;
@@ -18,14 +21,14 @@ import java.sql.Connection;
 
 public class AppUserInterface {
 
-    Connection connection = DataBaseConnection.getInstance().getConnection();
+    private final PersonView personView;
+    private final AccountView accountView;
 
-    PersonRepositoryInterface personRepositoryInterface = new PersonRepositoryImplBD(connection);
-    PersonUseCase personUseCase = new PersonServiceImpl(personRepositoryInterface);
-    PersonView personView = new PersonView(personUseCase);
-    AccountRepositoryInterface accountRepositoryInterface = new AccountRepositoryImpl();
-    AccountUseCase accountUseCase = new AccountServiceImpl(accountRepositoryInterface, personRepositoryInterface);
-    AccountView accountView = new AccountView(accountUseCase);
+    public AppUserInterface(PersonView personView ,AccountView accountView ){
+        this.personView = personView;
+        this.accountView = accountView;
+
+    }
 
 
     public void startApp(){

@@ -1,22 +1,26 @@
 package app.persistence.repository;
 
 import app.domain.Person;
+import app.persistence.mapper.RowMapper;
 import app.service.outputports.PersonRepositoryInterface;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonRepositoryImplBD implements PersonRepositoryInterface {
 
 
     private final Connection connection;
+    private final RowMapper rowMapper;
 
 
-    public PersonRepositoryImplBD(Connection connection){
+    public PersonRepositoryImplBD(Connection connection,RowMapper rowMapper ){
         this.connection = connection;
+        this.rowMapper = rowMapper;
     }
 
     @Override
@@ -36,14 +40,7 @@ public class PersonRepositoryImplBD implements PersonRepositoryInterface {
     }catch (SQLException e){
         throw  new RuntimeException("Error al guardar Persona" + e.getMessage());
     }
-
-
-
-
-
-
-
-        return null;
+        return person;
     }
 
     @Override
@@ -53,7 +50,25 @@ public class PersonRepositoryImplBD implements PersonRepositoryInterface {
 
     @Override
     public List<Person> selectAllPersons() {
-        return List.of();
+
+        List<Person> persons = new ArrayList<>();
+
+        String sql = "SELECT * FROM person";
+
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                persons.add((Person) rowMapper.mapRow(rs));
+            }
+
+        }catch (SQLException e){
+
+            throw new RuntimeException("Error al consultar personas " + e.getMessage());
+        }
+
+        return persons;
     }
 
     @Override
