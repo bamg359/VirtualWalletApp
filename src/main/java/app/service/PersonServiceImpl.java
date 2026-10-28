@@ -19,8 +19,10 @@ public class PersonServiceImpl implements PersonUseCase {
     @Override
     public Person createPerson(Integer id, String name, String lastName, String documentType, String email, String password, String isActive, String occupation, Double salary) {
         // Logic to create a new Person object
+
         Person person = new Person(id, name, lastName, documentType, email , password , isActive, occupation , salary );
-        return person; // Placeholder return
+        System.out.println("Se envio a service");
+        return personRepository.savePerson(person); // Placeholder return
     }
 
 

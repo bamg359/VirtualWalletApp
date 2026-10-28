@@ -32,7 +32,7 @@ public class PersonView {
 
         personService.createPerson(id, name, lastName, docType, email , password , state , occupation , salary);
 
-
+        System.out.println("Se envio a service");
 
 
 

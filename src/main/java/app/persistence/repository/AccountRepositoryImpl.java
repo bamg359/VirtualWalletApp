@@ -1,4 +1,4 @@
-package app.repository;
+package app.persistence.repository;
 
 import app.domain.Account;
 import app.service.outputports.AccountRepositoryInterface;
