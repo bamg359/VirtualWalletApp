@@ -1,10 +1,13 @@
 package app.view;
 
+import app.domain.Person;
 import app.domain.enums.DocumentTypeEnum;
 import app.service.helpers.SetDocumentType;
 import app.service.helpers.SetPersonState;
 import app.service.inputports.PersonUseCase;
 import app.utils.FormRuleValidator;
+
+import java.util.List;
 
 public class PersonView {
 
@@ -39,7 +42,14 @@ public class PersonView {
     }
 
     public void showPersons(){
+
         System.out.println("Showing persons");
+
+        List<Person> persons = personService.getAllPersons();
+
+        for(Person person: persons){
+            System.out.println(person);
+        }
     }
 
 
