@@ -93,18 +93,15 @@ public class PersonRepositoryImplBD implements PersonRepositoryInterface {
 
         String sql = """ 
                 UPDATE person
-                SET name = ? , SET last_name = ? ,  SET document_type= ? , 
-                SET email = ? , SET password_person = ? , SET state = ? , 
-                SET occupation = ? , SET salary = ?
+                SET id = ? , name=?, last_name = ? , document_type=? , email=? , password_person=? ,state=?, occupation=?, salary=?
                 WHERE id = ?
-            
                 """;
 
         try(PreparedStatement ps = connection.prepareStatement(sql)){
 
             setPersonParams(ps, person);
 
-            ps.setInt(9, person.getId());
+            ps.setInt(10, person.getId());
 
             ps.executeUpdate();
 
@@ -118,6 +115,17 @@ public class PersonRepositoryImplBD implements PersonRepositoryInterface {
     @Override
     public void deletePerson(int id) {
 
+        String sql = "DELETE from person WHERE id = ?";
+
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+
+            ps.setInt(1, id);
+            int rows = ps.executeUpdate();
+
+
+        }catch (SQLException e){
+            throw new RuntimeException("Error al borrar usuario " + id + "Mensaje " + e.getMessage());
+        }
     }
 
 

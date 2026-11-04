@@ -77,12 +77,28 @@ public class PersonView {
 
     public void updatePerson(){
         System.out.println("Updating person");
+        int id = FormRuleValidator.validateInt("Ingrese el ID del usuario a Actualizar");
+
+        String name = FormRuleValidator.validateString("Actualice el nombre de la persona: ");
+        String lastName = FormRuleValidator.validateString("Actualice el apellido de la persona: ");
+        String docType = SetDocumentType.getDocType();
+        String email = FormRuleValidator.validateString("Actualice el email");
+        String password = FormRuleValidator.validateString("Actualice una contraseña de al menos 8 caracteres que contenga Mayusculas, numeros y simbolos ");
+        String state = SetPersonState.getPersonState();
+        String occupation = FormRuleValidator.validateString("Actualice la ocupación");
+        double salary = FormRuleValidator.validateDouble("Actualice su salario");
+
+
+        personService.updatePerson(id, name, lastName , docType , email , password , state , occupation , salary);
+
 
 
     }
 
     public void deletePerson(){
         System.out.println("Deleting person");
+        int id  = FormRuleValidator.validateInt("Ingrese el id del usuario a eliminar");
+        personService.deletePerson(id);
     }
 
 
