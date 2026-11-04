@@ -54,11 +54,31 @@ public class PersonView {
 
 
     public void showPersonById(){
+
         System.out.println("Getting person By Id");
+
+        int id = FormRuleValidator.validateInt("Ingrese el id del cliente a consultar");
+
+        Person person = personService.getPersonById(id).orElseThrow();
+
+        System.out.println("Id: " + person.getId() + "\n" +
+                "Name: " + person.getName() + "\n" +
+                "lastName: " + person.getLastName() + "\n" +
+                "DocType: " + person.getDocumentType() + "\n" +
+                "email: " + person.getEmail() + "\n" +
+                "Password: " + person.getPassword() + "\n" +
+                "State: " + person.isState() + "\n" +
+                "Occupation: " + person.getOccupation() + "\n" +
+                "Salary: " + person.getSalary()
+        );
+
+
     }
 
     public void updatePerson(){
         System.out.println("Updating person");
+
+
     }
 
     public void deletePerson(){

@@ -6,6 +6,7 @@ import app.service.outputports.PersonRepositoryInterface;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 public class PersonRepositoryImp implements PersonRepositoryInterface {
 
@@ -24,9 +25,9 @@ public class PersonRepositoryImp implements PersonRepositoryInterface {
     }
 
     @Override
-    public Person selectPersonById(int id) {
+    public Optional<Person> selectPersonById(int id) {
         Person person  = persons.get(id);
-        return person;
+        return Optional.ofNullable(person);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class PersonRepositoryImp implements PersonRepositoryInterface {
     }
 
     @Override
-    public Person updatePerson(Person person) {
+    public Person updatePerson(int id, Person person) {
         persons.set(persons.indexOf(person), person);
         return person;
     }

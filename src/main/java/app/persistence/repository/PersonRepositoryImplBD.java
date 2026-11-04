@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class PersonRepositoryImplBD implements PersonRepositoryInterface {
 
@@ -44,8 +45,24 @@ public class PersonRepositoryImplBD implements PersonRepositoryInterface {
     }
 
     @Override
-    public Person selectPersonById(int id) {
-        return null;
+    public Optional<Person> selectPersonById(int id) {
+
+        String sql = "SELECT * FROM person WHERE id = ?";
+
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                return Optional.of((Person) rowMapper.mapRow(rs));
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException("No fue posible consultar el cliente con id" + id + "Mensaje: " + e.getMessage());
+        }
+
+        return Optional.empty();
     }
 
     @Override
@@ -72,8 +89,30 @@ public class PersonRepositoryImplBD implements PersonRepositoryInterface {
     }
 
     @Override
-    public Person updatePerson(Person person) {
-        return null;
+    public Person updatePerson(int id, Person person) {
+
+        String sql = """ 
+                UPDATE person
+                SET name = ? , SET last_name = ? ,  SET document_type= ? , 
+                SET email = ? , SET password_person = ? , SET state = ? , 
+                SET occupation = ? , SET salary = ?
+                WHERE id = ?
+            
+                """;
+
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+
+            setPersonParams(ps, person);
+
+            ps.setInt(9, person.getId());
+
+            ps.executeUpdate();
+
+        }catch (SQLException e){
+            throw new RuntimeException("No se pudo actualizar cliente con id " + id + "Mensaje" + e.getMessage());
+        }
+
+        return person;
     }
 
     @Override
