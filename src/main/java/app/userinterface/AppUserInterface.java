@@ -109,6 +109,14 @@ public class AppUserInterface {
                     System.out.println("Listar todas las personas");
                     personView.showPersons();
                     break;
+                case 4:
+                    System.out.println("Actualizar persona por Id");
+                    personView.updatePerson();
+                    break;
+                case 5:
+                    System.out.println("Borrar persona por Id");
+                    personView.deletePerson();
+                    break;
                 default:
                     System.out.println("Seleccione una opcion valida");
             }

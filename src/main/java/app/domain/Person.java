@@ -19,6 +19,8 @@ public class Person extends User {
         this.salary = salary;
     }
 
+
+
     public String getOccupation() {
         return occupation;
     }
