@@ -6,6 +6,7 @@ import app.service.inputports.PersonUseCase;
 import app.service.outputports.PersonRepositoryInterface;
 
 import java.util.List;
+import java.util.Optional;
 
 public class PersonServiceImpl implements PersonUseCase {
 
@@ -26,10 +27,10 @@ public class PersonServiceImpl implements PersonUseCase {
     }
 
 
-    public Person getPersonById(Integer id) {
+    public Optional<Person> getPersonById(Integer id) {
         // Logic to retrieve a Person by ID
-        Person person = personRepository.selectPersonById(id);
-        return person;
+        Person person = personRepository.selectPersonById(id).orElseThrow();
+        return Optional.ofNullable(person);
     }
 
     public List<Person> getAllPersons() {
@@ -40,7 +41,7 @@ public class PersonServiceImpl implements PersonUseCase {
     public Person updatePerson(Integer id, String name, String lastName, String documentType, String email, String password, String isActive, String occupation, Double salary) {
         // Logic to update an existing Person object
         Person person = new Person(id, name, lastName, documentType, email , password , isActive, occupation , salary );
-        return personRepository.updatePerson(person); // Placeholder return
+        return personRepository.updatePerson(id, person); // Placeholder return
     }
 
     public void deletePerson(Integer id) {
