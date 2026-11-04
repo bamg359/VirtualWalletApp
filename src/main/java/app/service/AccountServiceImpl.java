@@ -21,7 +21,7 @@ public class AccountServiceImpl implements AccountUseCase {
 
     @Override
     public Account createAccount(Integer accountId, String date, double balance, int personId, String accountState) {
-        Person person = personRepositoryInterface.selectPersonById(personId);
+        Person person = personRepositoryInterface.selectPersonById(personId).orElseThrow();
 
         if (person == null) {
             throw new IllegalArgumentException("Person with ID " + personId + " does not exist.");
